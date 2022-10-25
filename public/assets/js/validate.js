@@ -41,7 +41,7 @@ function checkInputs() {
         let message = "Username must be at least " + minUsernameLength + " characters";
         setErrorFor(username, message);
     }
-    else if(checkNameAvailability(usernameValue) != true) {
+    else if(!checkNameAvailability(usernameValue)) {
         let message = "Username " + usernameValue + " is already taken";
         setErrorFor(username, message);
     }
