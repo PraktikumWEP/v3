@@ -1,6 +1,14 @@
-// env variables (will move to backend)
-const COLLECTION_ID = 'f286aee2-128a-4e99-a839-4e07d87550eb';
-
+// get data from config
+let COLLECTION_ID; // initialize empty for global scope
+fetch('./cfg.json')
+.then(response => response.json()) // get object from response
+.then(data => {
+    COLLECTION_ID = data.COLLECTION_ID; // get ID
+})
+.catch(err => { 
+    console.error(err);
+});
+    
 // get elements
 const form = document.forms.registerForm;
 const username = form.username;
@@ -121,7 +129,7 @@ function checkNameAvailability(name) {
             return true;
         }
         else { // throw any other status to console
-            console.log('error ' + userreq.status);
+            console.error('error ' + userreq.status);
         }
     }
 }
