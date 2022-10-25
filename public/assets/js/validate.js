@@ -113,7 +113,8 @@ function checkNameAvailability(name) {
     // vars
     let userreq = new XMLHttpRequest();
     let uri = "https://online-lectures-cs.thi.de/chat/" + COLLECTION_ID + "/user/" + name;
-    
+    let ret;
+
     // request
     try { // synchronous
         userreq.open("GET", uri, false);
@@ -124,13 +125,14 @@ function checkNameAvailability(name) {
     }
     finally {
         if (userreq.status == 204) { // already exists
-            return false;
+            ret = false;
         }
         else if (userreq.status == 404) { // available
-            return true;
+            ret = true;
         }
         else { // throw any other status to console
             console.error('error ' + userreq.status);
         }
     }
+    return ret;
 }
