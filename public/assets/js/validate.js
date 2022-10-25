@@ -16,19 +16,20 @@ const password1 = form.password1;
 const password2 = form.password2;
 const submit = form.submit;
 
+// settings
+const minPasswordLength = 8;
+const minUsernameLength = 3;
+
 // event listener submit
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     resetErrorMessage();
     checkInputs();
     checkSuccess();
-})
+});
 
 // functions
 function checkInputs() {
-    // settings
-    const minPasswordLength = 8;
-    const minUsernameLength = 3;
 
     // trim
     const usernameValue = username.value.trim();
