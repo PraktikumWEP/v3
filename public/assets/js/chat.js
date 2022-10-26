@@ -19,7 +19,7 @@ loadMessages();
 
 // refresh
 window.setInterval(e => {
-    loadMessages();
+    loadMessages(TOM_TOKEN);
 }, 1000);
 
 function loadMessages(token) {
@@ -30,19 +30,15 @@ function loadMessages(token) {
     let messages = [];
     
     // request
-    try {
-        fetch(uri)
-        .then(response => response.json())
-        .then(data => {
-            messages = data;
-        });
-    }
-    catch(e) {
-        console.error(e);
-    }
-    finally {
-        showMessages(messages);
-    }
+    fetch(uri)
+    .then(response => response.json())
+    .then(data => {
+        messages = data;
+    })
+    .catch(err => {
+        console.error(err);    
+    });
+    showMessages(messages);
 }
 
 function showMessages(messages) {
