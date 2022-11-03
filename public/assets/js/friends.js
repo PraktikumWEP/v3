@@ -33,7 +33,7 @@ let input = document.getElementsByClassName("input")[0];
 let card = document.getElementsByClassName("card")[0];
 
 async function refreshList() {
-    let friends = ["test1", "test2", "test3", "test1234", "test11234"]
+    let friends = await getFriends();
     let value = input.value;
     let filter = friends.filter(friend => {
         if(input.value.length > 0) {
