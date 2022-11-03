@@ -176,7 +176,7 @@ $pContainerL: 4.25rem;
 
 #chat {
     overflow-y: auto;
-    height: 300px;
+    max-height: 200px;
     transform: rotateX(180deg);
 }
 

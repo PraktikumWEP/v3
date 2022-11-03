@@ -24,7 +24,6 @@ async function getFriends() {
     }
     else {
         console.error('error ' + response.status);
-        return
     }
 }
 
@@ -65,7 +64,7 @@ async function refreshList() {
 }
 
 input.addEventListener("input", (e) => {
-    refreshList(e);
+    refreshList();
 })
 
 await getFriends();

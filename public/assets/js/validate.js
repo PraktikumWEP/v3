@@ -120,7 +120,7 @@ async function checkNameAvailability(name) {
         return true;
     }
     else {
-        console.error('error ' + response.status);
+        console.error('error ' + response.status); // print error
         return false;
     }
 }

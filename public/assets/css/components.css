@@ -173,7 +173,7 @@
 
 #chat {
   overflow-y: auto;
-  height: 300px;
+  max-height: 200px;
   transform: rotateX(180deg);
 }
 
