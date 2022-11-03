@@ -29,7 +29,7 @@ form.addEventListener('submit', (e) => {
 });
 
 // functions
-function checkInputs() {
+async function checkInputs() {
 
     // trim
     const usernameValue = username.value.trim();
@@ -41,7 +41,7 @@ function checkInputs() {
         let message = "Username must be at least " + minUsernameLength + " characters";
         setErrorFor(username, message);
     }
-    else if(!checkNameAvailability(usernameValue)) {
+    else if(!(await checkNameAvailability(usernameValue))) {
         let message = "Username " + usernameValue + " is already taken";
         setErrorFor(username, message);
     }
@@ -109,30 +109,18 @@ function resetErrorMessage() {
 }
 
 // AJAX
-function checkNameAvailability(name) {
-    // vars
-    let userreq = new XMLHttpRequest();
+async function checkNameAvailability(name) {
     let uri = "https://online-lectures-cs.thi.de/chat/" + COLLECTION_ID + "/user/" + name;
-    let ret;
+    let response = await fetch(uri);
 
-    // request
-    try { // synchronous
-        userreq.open("GET", uri, false);
-        userreq.send();
+    if (response.status == 204) { // already exists
+        return false;
     }
-    catch(e) {
-        // swallow 404
+    else if (response.status == 404) { // available
+        return false;
     }
-    finally {
-        if (userreq.status == 204) { // already exists
-            ret = false;
-        }
-        else if (userreq.status == 404) { // available
-            ret = true;
-        }
-        else { // throw any other status to console
-            console.error('error ' + userreq.status);
-        }
+    else {
+        console.error('error ' + response.status);
+        return false
     }
-    return ret;
 }

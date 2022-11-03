@@ -31,13 +31,14 @@ function loadMessages(token) {
     
     // request
     fetch(uri)
-    .then(response => response.json())
-    .then(data => {
-        messages = data;
-    })
-    .catch(err => {
-        console.error(err);    
-    });
+        .then(response => response.json())
+        .then(data => {
+            messages = data;
+        })
+        .catch(err => {
+            console.error(err);    
+        });
+        
     showMessages(messages);
 }
 
