@@ -117,10 +117,10 @@ async function checkNameAvailability(name) {
         return false;
     }
     else if (response.status == 404) { // available
-        return false;
+        return true;
     }
     else {
         console.error('error ' + response.status);
-        return false
+        return false;
     }
 }
