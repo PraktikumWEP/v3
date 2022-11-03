@@ -29,6 +29,7 @@ async function getFriends() {
 
 let list = document.getElementsByClassName("suggested-friends")[0];
 let input = document.getElementsByClassName("input")[0];
+const form = document.forms.addFriend;
 
 async function refreshList() {
     // get friend and filter them by input
@@ -74,6 +75,23 @@ async function refreshList() {
     }
 }
 
+async function checkFriends() {
+    let friends = await getFriends();
+    let value = input.value;
+
+    if(friends.includes(value)) {
+        return true;
+    }
+    return false;
+}
+
 input.addEventListener("input", () => {
     refreshList();
+})
+
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if(await checkFriends()) {
+        form.submit();
+    }
 })
