@@ -3,7 +3,7 @@ let TOM_TOKEN; // initialize empty for global scope
 let JERRY_TOKEN;
 
 // fetch config data
-fetch('./cfg.json')
+await fetch('./cfg.json')
 .then(response => response.json()) // get object from response
 .then(data => {
     COLLECTION_ID = data.COLLECTION_ID;
