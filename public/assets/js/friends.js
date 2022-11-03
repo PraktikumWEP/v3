@@ -29,9 +29,9 @@ async function getFriends() {
 
 let list = document.getElementsByClassName("suggested-friends")[0];
 let input = document.getElementsByClassName("input")[0];
-let card = document.getElementsByClassName("card")[0];
 
 async function refreshList() {
+    // get friend and filter them by input
     let friends = await getFriends();
     let value = input.value;
     let filter = friends.filter(friend => {
@@ -43,28 +43,37 @@ async function refreshList() {
     })
 
     if(filter.length > 0) {
-        list.style.display = "block";
+        // create list of friend entries
         let new_list = document.createElement("div");
 
         filter.forEach(friend => {
             let element = document.createElement("div");
             element.classList.add("mElement");
-            element.classList.add("suggested-friends-entry"); 
-
+            element.classList.add("suggested-friends-entry");
             element.innerHTML = friend;
             new_list.appendChild(element);
         });
     
+        // show list and add new elements
+        list.style.display = "block";
         list.innerHTML = new_list.innerHTML;
+
+        // add click handler on each entry for auto complete
+        list.childNodes.forEach(child => {
+            child.addEventListener("click", () => {
+                input.value = child.innerHTML
+                list.style.display = "none";
+                list.innerHTML = "";
+            }) 
+        })
     }
     else {
+        // display nothing if we dont find anything
         list.style.display = "none";
         list.innerHTML = "";
     }
 }
 
-input.addEventListener("input", (e) => {
+input.addEventListener("input", () => {
     refreshList();
 })
-
-await getFriends();
