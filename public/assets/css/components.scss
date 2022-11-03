@@ -170,6 +170,16 @@ $pContainerL: 4.25rem;
     max-width: 750px;
 }
 
+.chat-helper-div {
+    transform: rotateX(180deg);
+}
+
+#chat {
+    overflow-y: auto;
+    height: 300px;
+    transform: rotateX(180deg);
+}
+
 @media(max-width: 700px) {
     .button-box {
         display: flex;
