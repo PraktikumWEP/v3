@@ -180,6 +180,19 @@ $pContainerL: 4.25rem;
     transform: rotateX(180deg);
 }
 
+
+.suggested-friends {
+    border: 2px solid black;
+    border-radius: 4px;
+    overflow: hidden;
+    display: none;
+}
+
+.suggested-friends-entry:hover {
+    cursor: pointer;
+    color: $primary;
+}
+
 @media(max-width: 700px) {
     .button-box {
         display: flex;
