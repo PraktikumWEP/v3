@@ -65,6 +65,7 @@ async function refreshList() {
                 input.value = child.innerHTML
                 list.style.display = "none";
                 list.innerHTML = "";
+                input.className = 'input';
             }) 
         })
     }
@@ -93,5 +94,8 @@ form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if(await checkFriends()) {
         form.submit();
+    }
+    else {
+        input.className = 'input input-error';
     }
 })
