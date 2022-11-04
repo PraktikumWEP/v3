@@ -35,8 +35,17 @@ window.setInterval(e => {
 // event listener for button (calls send)
 let send_button = document.getElementsByClassName("button-send")[0];
 send_button.addEventListener("click", e => {
-    let message = document.getElementsByClassName("input-message")[0].value;
-    send(message);
+    let message = document.getElementsByClassName("input-message")[0];
+    send(message.value);
+    message.value = "";
+});
+
+// send on enter 
+let input = document.getElementsByClassName("input-message")[0];
+input.addEventListener("keypress", (e) => {
+    if(e.key == "Enter") {
+        send_button.click();
+    }
 });
 
 // FUNCTIONS
