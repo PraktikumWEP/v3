@@ -43,7 +43,7 @@ send_button.addEventListener("click", e => {
 // send on enter 
 let input = document.getElementsByClassName("input-message")[0];
 input.addEventListener("keypress", (e) => {
-    if(e.key == "Enter") {
+    if(e.key === "Enter") {
         send_button.click();
     }
 });
@@ -68,7 +68,7 @@ function loadMessages(token) {
     .then(response => response.json())
     .then(data => {
         messages = data;
-        if(messages != oldMessages) {
+        if(messages !== oldMessages) {
             clearMessages();
             showMessages(messages);
         }

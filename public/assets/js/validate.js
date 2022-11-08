@@ -113,10 +113,10 @@ async function checkNameAvailability(name) {
     let uri = "https://online-lectures-cs.thi.de/chat/" + COLLECTION_ID + "/user/" + name;
     let response = await fetch(uri);
 
-    if (response.status == 204) { // already exists
+    if (response.status === 204) { // already exists
         return false;
     }
-    else if (response.status == 404) { // available
+    else if (response.status === 404) { // available
         return true;
     }
     else {
