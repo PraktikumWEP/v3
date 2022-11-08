@@ -150,8 +150,8 @@ function send(message) {
 }
 
 // remove all child elements of a parent node
-const removeChilds = (parent) => {
+function removeChilds(parent) {
     while (parent.lastChild) {
         parent.removeChild(parent.lastChild);
     }
-};
+}
