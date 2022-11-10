@@ -24,18 +24,29 @@ const minUsernameLength = 3;
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     resetErrorMessage();
-    checkInputs();
+    checkInputsUsername();
+    checkInputsPassword1();
+    checkInputsPassword2();
     checkSuccess();
 });
 
-// functions
-async function checkInputs() {
+username.addEventListener('input', (e) => {
+    checkInputsUsername();
+});
 
+password1.addEventListener('input', (e) => {
+    checkInputsPassword1();
+});
+
+password2.addEventListener('input', (e) => {
+    checkInputsPassword2();
+});
+
+async function checkInputsUsername() {
+    // reset error msg
+    setErrorMessage(username, '');
     // trim
     const usernameValue = username.value.trim();
-    const pw1Value = password1.value.trim();
-    const pw2Value = password2.value.trim();
-
     // name check
     if(usernameValue.length < minUsernameLength) {
         let message = "Username must be at least " + minUsernameLength + " characters";
@@ -48,7 +59,13 @@ async function checkInputs() {
     else {
         setSuccessFor(username);
     }
+}
 
+async function checkInputsPassword1() {
+    // reset error msg
+    setErrorMessage(password1, '');
+    // trim 
+    const pw1Value = password1.value.trim();
     // password check
     if(pw1Value.length < minPasswordLength) {
         let message = "Password must be at least " + minPasswordLength + " characters";
@@ -57,7 +74,14 @@ async function checkInputs() {
     else {
         setSuccessFor(password1);
     }
+}
 
+async function checkInputsPassword2() {
+    // reset error msg
+    setErrorMessage(password2,'');
+    // trim
+    const pw1Value = password1.value.trim();
+    const pw2Value = password2.value.trim();
     // password repeat check
     if(pw1Value.length < minPasswordLength) {
         let message = "";
