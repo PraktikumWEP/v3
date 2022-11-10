@@ -52,6 +52,7 @@ input.addEventListener("keypress", (e) => {
 
 // GET messages
 function loadMessages(token) {
+
     // vars for request
     let uri = "https://online-lectures-cs.thi.de/chat/" + COLLECTION_ID + "/message/" + user;
 
@@ -129,6 +130,7 @@ function clearMessages() {
 
 // POST message
 function send(message) {
+    
     // vars
     let uri = "https://online-lectures-cs.thi.de/chat/" + COLLECTION_ID + "/message";
 
