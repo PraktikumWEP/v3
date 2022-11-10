@@ -61,7 +61,7 @@ async function checkInputsUsername() {
         let message = "Username must be at least " + minUsernameLength + " characters";
         setErrorFor(username, message);
     }
-    else if(!(await checkNameAvailability(usernameValue))) {
+    else if(!(await checkNameAvailability(usernameValue))) { // async
         let message = "Username " + usernameValue + " is already taken";
         setErrorFor(username, message);
     }
@@ -71,7 +71,7 @@ async function checkInputsUsername() {
 }
 
 // check inputs for password input
-async function checkInputsPassword1() {
+function checkInputsPassword1() {
 
     // reset error msg
     setErrorMessage(password1, '');
@@ -90,7 +90,7 @@ async function checkInputsPassword1() {
 }
 
 // check inputs for password repeat input
-async function checkInputsPassword2() {
+function checkInputsPassword2() {
 
     // reset error msg
     setErrorMessage(password2,'');
