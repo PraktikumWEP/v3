@@ -20,6 +20,7 @@ const submit = form.submit;
 const minPasswordLength = 8;
 const minUsernameLength = 3;
 
+// event listeners
 // event listener submit
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -30,23 +31,31 @@ form.addEventListener('submit', (e) => {
     checkSuccess();
 });
 
+// event listener username input
 username.addEventListener('input', (e) => {
     checkInputsUsername();
 });
 
+// event listener password input
 password1.addEventListener('input', (e) => {
     checkInputsPassword1();
 });
 
+// event listener password repeat input 
 password2.addEventListener('input', (e) => {
     checkInputsPassword2();
 });
 
+// functions
+// check username input arguments
 async function checkInputsUsername() {
+
     // reset error msg
     setErrorMessage(username, '');
+
     // trim
     const usernameValue = username.value.trim();
+
     // name check
     if(usernameValue.length < minUsernameLength) {
         let message = "Username must be at least " + minUsernameLength + " characters";
@@ -61,11 +70,15 @@ async function checkInputsUsername() {
     }
 }
 
+// check inputs for password input
 async function checkInputsPassword1() {
+
     // reset error msg
     setErrorMessage(password1, '');
+
     // trim 
     const pw1Value = password1.value.trim();
+
     // password check
     if(pw1Value.length < minPasswordLength) {
         let message = "Password must be at least " + minPasswordLength + " characters";
@@ -76,12 +89,16 @@ async function checkInputsPassword1() {
     }
 }
 
+// check inputs for password repeat input
 async function checkInputsPassword2() {
+
     // reset error msg
     setErrorMessage(password2,'');
+
     // trim
     const pw1Value = password1.value.trim();
     const pw2Value = password2.value.trim();
+
     // password repeat check
     if(pw1Value.length < minPasswordLength) {
         let message = "";
@@ -96,22 +113,27 @@ async function checkInputsPassword2() {
     }
 }
 
+// add error class and message
 function setErrorFor(input, message) {
     setErrorMessage(input, message);
     input.className = 'input input-error';
 }
 
+// set the error message for the specified input
 function setErrorMessage(input, message) {
     const formSection = input.parentElement.parentElement;
     const small = formSection.querySelector('div.hasSmall').querySelector('small');
     small.innerText = message; // set error message
 }
 
+// add success class
 function setSuccessFor(input) {
     input.className = 'input input-success';
 }
 
+// check if all inputs have success class and submit if so
 function checkSuccess() {
+
     // guard clauses
     if(!username.classList.contains('input-success')) {
         return;
@@ -122,10 +144,12 @@ function checkSuccess() {
     if(!password2.classList.contains('input-success')) {
         return;
     }
+
     // submit
     form.submit();
 }
 
+// reset error message for all inputs
 function resetErrorMessage() {
     setErrorMessage(username, '');
     setErrorMessage(password1, '');
@@ -133,6 +157,7 @@ function resetErrorMessage() {
 }
 
 // AJAX
+// check if specified name is already in use
 async function checkNameAvailability(name) {
     let uri = "https://online-lectures-cs.thi.de/chat/" + COLLECTION_ID + "/user/" + name;
     let response = await fetch(uri);
